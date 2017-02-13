@@ -4,10 +4,6 @@
 # Section One: Webcrawler
 
 def get_page(url):
-    # This is a simulated get_page procedure so that you can test your
-    # code on two pages "http://xkcd.com/353" and "http://xkcd.com/554".
-    # A procedure which actually grabs a page from the web will be 
-    # introduced in unit 4.
     try:
         import urllib
         return urllib.urlopen(url).read()
@@ -66,7 +62,9 @@ def add_to_index(index,keyword,url):
 	'''Adds new entries (keyword & urls) to the index.'''
 	for e in index:
 		if e[0] == keyword:
-			return e[1].append(url)
+			if not url in entry[1]:
+				e[1].append(url)
+			return
 	index.append([keyword,[url]])
 
 def lookup(index,keyword):
@@ -81,6 +79,3 @@ def add_page_to_index(index, url, content):
 	word_bank = content.split()
 	for w in word_bank:
 		add_to_index(index, word, url)
-
-
-
