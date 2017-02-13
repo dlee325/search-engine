@@ -55,3 +55,17 @@ def crawl_web(seed):
 			union(tocrawl, get_all_links(get_page(page)))
 			crawled.append(page)
 	return crawled
+
+
+
+# Section Two: Web Index
+
+index = []
+
+def add_to_index(index,keyword,url):
+'''Adds new entries (keyword & urls) to the index.'''
+		for e in index:
+			if e[0] == keyword:
+				return e[1].append(url)
+		index.append([keyword,[url]])
+
