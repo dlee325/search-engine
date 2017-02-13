@@ -80,7 +80,7 @@ def add_page_to_index(index, url, content):
 	'''Updates index to include all word occurences with URL from a webpage.'''
 	word_bank = content.split()
 	for w in word_bank:
-		for e in index: 
-			if w == e[0]:
-				e[1].append(url)
-		index.append([w, [url]])
+		add_to_index(index, word, url)
+		
+
+
