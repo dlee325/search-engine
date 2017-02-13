@@ -63,15 +63,15 @@ def crawl_web(seed):
 index = []
 
 def add_to_index(index,keyword,url):
-'''Adds new entries (keyword & urls) to the index.'''
-		for e in index:
-			if e[0] == keyword:
-				return e[1].append(url)
-		index.append([keyword,[url]])
+	'''Adds new entries (keyword & urls) to the index.'''
+	for e in index:
+		if e[0] == keyword:
+			return e[1].append(url)
+	index.append([keyword,[url]])
 
 def lookup(index,keyword):
 	'''Returns list of associated URLs of keyword.'''
-    for e in index:
-        if e[0] == keyword:
-            return e[1]
-    return []
+	for e in index:
+		if e[0] == keyword:
+			return e[1]
+	return []
