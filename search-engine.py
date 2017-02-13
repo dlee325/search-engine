@@ -69,3 +69,9 @@ def add_to_index(index,keyword,url):
 				return e[1].append(url)
 		index.append([keyword,[url]])
 
+def lookup(index,keyword):
+	'''Returns list of associated URLs of keyword.'''
+    for e in index:
+        if e[0] == keyword:
+            return e[1]
+    return []
