@@ -1,7 +1,6 @@
 # My first search engine.
 
-# Encapsulate code in a function.
-# Account for cases where no URL in HTML.
+# Function to print all URLs found on page.
 
 
 page =('<div id="top_bin"><div id="top_content" class="width960">'
@@ -15,3 +14,13 @@ def get_next_target(page):
 	end_quote = page.find('"', start_quote + 1)
 	url = page[start_quote + 1:end_quote]
 	return url, end_quote
+
+def print_all_links(page):
+	while True:
+		url, endpos = get_next_target(page)
+		if url:
+			print url
+			page = page[endpos:]
+		else:
+			break
+
