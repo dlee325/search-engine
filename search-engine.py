@@ -49,12 +49,15 @@ def crawl_web(seed):
 	'''Outputs a list of URLs that can be reached by a defined seed page.'''	
 	tocrawl = [seed]
 	crawled = []
+	index = []
 	while tocrawl:
 		page = tocrawl.pop()
 		if page not in crawled:
-			union(tocrawl, get_all_links(get_page(page)))
+			content = get_page(page)
+			union(tocrawl, get_all_links(content))
+			add_page_to_index(index,page,content)
 			crawled.append(page)
-	return crawled
+	return index
 
 
 
@@ -81,6 +84,6 @@ def add_page_to_index(index, url, content):
 	word_bank = content.split()
 	for w in word_bank:
 		add_to_index(index, word, url)
-		
+
 
 
