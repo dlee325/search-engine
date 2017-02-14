@@ -42,7 +42,7 @@ def crawl_web(seed):
 	'''Outputs a list of URLs that can be reached by a defined seed page.'''	
 	tocrawl = [seed]
 	crawled = []
-	index = []
+	index = {}
 	while tocrawl:
 		page = tocrawl.pop()
 		if page not in crawled:
@@ -60,20 +60,17 @@ index = []
 
 def add_to_index(index,keyword,url):
 	'''Adds new entries (keyword & urls) to the index.'''
-	for e in index:
-		if e[0] == keyword:
-			if not url in entry[1]:
-				e[1].append(url)
-			return
-	index.append([keyword,[url]])
+	if keyword in index:
+		index[keyword].append(url)
+	else:
+		index[keyword] = [url]
 
 def lookup(index,keyword):
 	'''Returns list of associated URLs of keyword.'''
-	for e in index:
-		if e[0] == keyword:
-			return e[1]
-	return []
-
+	if keyword in index:
+		return index[keyword]
+	return None
+	
 def add_page_to_index(index, url, content):
 	'''Updates index to include all word occurences with URL from a webpage.'''
 	word_bank = content.split()
